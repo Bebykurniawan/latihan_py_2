@@ -1,4 +1,5 @@
 import json
+import datetime
 
 menu = {}
 file_path = "menu.json"
@@ -56,29 +57,53 @@ def save_orders(nama_pelanggan, orders, total_harga):
   with open("catatan.txt", "a") as file:
     file.write(json.dumps(order_details) + "\n")
 
+def transaksi(total_harga):
+    while True:
+        print(f'Total Harga: Rp{total_harga:.2f}')
+        try:
+            nominal = int(input("Masukkan nominal yang akan dibayar: "))
+            if nominal >= total_harga:
+                kembalian = nominal - total_harga
+                print(f"Kembalian: Rp{kembalian:.2f}")
+                return kembalian,nominal
+            else:
+                print("Nominal yang anda masukkan kurang.")
+        except ValueError:
+            print("Input harus berupa angka.")
+    
+
 # Membaca dan menampilkan pesanan dari file
-def read_orders():
-  with open("catatan.txt", "r") as file:
-    lines = file.readlines()
-    baris_terakhir = lines[-1]
-    order_details = json.loads(baris_terakhir)
+def read_orders(kembalian,nominal):
+    with open("catatan.txt", "r") as file:
+      lines = file.readlines()
+      baris_terakhir = lines[-1]
+      order_details = json.loads(baris_terakhir)
+      date = datetime.datetime.now()
+      id = f"{date.year}{date.month}{date.day}{date.time().hour}{date.time().minute}{date.time().second}"
+      format_date = f"{date.year}-{date.month}-{date.day} {date.time().hour}:{date.time().minute}:{date.time().second}"
     print()
     print("|=======================================|")
-    print(f"Nama Pelanggan: {order_details['Nama Pelanggan']:15}")
+    print("|Kode Transaksi :        ",id,                "|")
+    print(f"|Nama Pelanggan: {order_details['Nama Pelanggan']:15}        |")
     print("|=======================================|")
-    print("| DETAIL PESANAN |")
+    print("|Tanggal Pemesanan : ",format_date,"|")
     print("|=======================================|")
-    print(f"|      Menu    |   Porsi |     Harga   |")
+    print("|            DETAIL PESANAN             |")
     print("|=======================================|")
+    print(f"|      Menu    |   Porsi |     Harga    |")
+    print("|========================================|")
     for order in order_details["orders"]:
       print(f"| {order['item']:17} | {order['porsi']:5} | Rp{order['harga']:8} |")
     print("|=======================================|")
     print(f"   Total Harga: Rp{order_details['total_harga']:8}")
+    print(f"Nominal :  {nominal}")
+    print(f"Kembalian :  {kembalian}")
     print("|=======================================|")
-    print("TERIMA KASIH")
+    print("|              TERIMA KASIH             |")
     print("|=======================================|")
 
 # Menjalankan program
 nama_pelanggan, orders, total_harga = take_order(menu)
 save_orders(nama_pelanggan, orders, total_harga)
-read_orders()
+kembalian,nominal = transaksi(total_harga)
+read_orders(kembalian,nominal)

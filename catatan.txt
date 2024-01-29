@@ -1,8 +1,1 @@
-{"Nama Pelanggan": "Beby Kurniawan", "orders": [{"item": "Soto Ayam", "porsi": 2, "harga": 20000}], "total_harga": 20000}
-{"Nama Pelanggan": "lala", "orders": [{"item": "Mie Goreng", "porsi": 3, "harga": 36000}], "total_harga": 36000}
-{"Nama Pelanggan": "lalala", "orders": [], "total_harga": 0}
-{"Nama Pelanggan": "lala", "orders": [{"item": "Nasi Goreng", "porsi": 5, "harga": 75000}], "total_harga": 75000}
-{"Nama Pelanggan": "lala", "orders": [{"item": "Soto Ayam", "porsi": 2, "harga": 20000}, {"item": "Mie Goreng", "porsi": 5, "harga": 60000}], "total_harga": 80000}
-{"Nama Pelanggan": "amkqkdj", "orders": [{"item": "Soto Ayam", "porsi": 2, "harga": 20000}], "total_harga": 20000}
-{"Nama Pelanggan": "lsls", "orders": [{"item": "Es Teh", "porsi": 2, "harga": 10000}], "total_harga": 10000}
-{"Nama Pelanggan": "vianok", "orders": [{"item": "Es Teh", "porsi": 10, "harga": 50000}], "total_harga": 50000}
+
